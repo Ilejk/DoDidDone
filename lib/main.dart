@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:todo_app/common/utils/manager/colors.dart';
-import 'package:todo_app/features/onboarding/pages/onboarding_page.dart';
+
+import 'common/routes/router.dart';
 
 void main() => runApp(
       const ProviderScope(
@@ -28,7 +29,8 @@ class TodoApp extends StatelessWidget {
           ),
           debugShowCheckedModeBanner: false,
           themeMode: ThemeMode.dark,
-          home: const OnBoardingPage(),
+          onGenerateRoute: RouteGenerator.getRoute,
+          initialRoute: Routes.onBoardingRoute,
         );
       },
     );

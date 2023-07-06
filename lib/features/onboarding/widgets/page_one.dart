@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:todo_app/common/utils/manager/assets.dart';
 import 'package:todo_app/common/utils/manager/colors.dart';
+import 'package:todo_app/common/utils/manager/strings.dart';
 import 'package:todo_app/common/utils/manager/values.dart';
 import 'package:todo_app/common/widgets/app_text_style.dart';
 import 'package:todo_app/common/widgets/reusable_text.dart';
@@ -22,7 +23,7 @@ class OnBoardingPageOne extends StatelessWidget {
           LottieBuilder.asset(AppAnimations.onboarding1),
           const HeightSpacer(he: AppSizes.s30),
           ReusableTextWidget(
-            text: 'Track your daily tasks\nwith ease!',
+            text: AppStrings.onboardingTitle1,
             maxLines: 2,
             textAlign: TextAlign.center,
             textStyle: appTextStyle(

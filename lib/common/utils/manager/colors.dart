@@ -9,6 +9,7 @@ class AppColors {
   static const Color black26 = Colors.black26;
   static const Color white = Colors.white;
   static const Color white54 = Colors.white54;
+  static const Color error = Colors.red;
   static Color primaryDarkGrey = HexColor.fromHex('#202020');
   static Color secondaryDarkGrey = HexColor.fromHex('#2D2D2D');
   static Color accentDarkGrey = HexColor.fromHex('#444444');
