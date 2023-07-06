@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:todo_app/common/utils/manager/colors.dart';
 import 'package:todo_app/features/onboarding/pages/onboarding_page.dart';
-import 'package:todo_app/features/todo/pages/home_page.dart';
 
 void main() => runApp(
       const ProviderScope(
@@ -22,10 +22,12 @@ class TodoApp extends StatelessWidget {
       builder: (context, child) {
         return MaterialApp(
           theme: ThemeData(
+            scaffoldBackgroundColor: AppColors.primaryDarkGrey,
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.purple),
             useMaterial3: true,
           ),
           debugShowCheckedModeBanner: false,
+          themeMode: ThemeMode.dark,
           home: const OnBoardingPage(),
         );
       },
