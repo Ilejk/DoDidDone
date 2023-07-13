@@ -30,7 +30,7 @@ class TodoApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           themeMode: ThemeMode.dark,
           onGenerateRoute: RouteGenerator.getRoute,
-          initialRoute: Routes.onBoardingRoute,
+          initialRoute: Routes.homeRoute,
         );
       },
     );

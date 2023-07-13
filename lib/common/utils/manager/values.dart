@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppValues {
@@ -45,4 +46,5 @@ class AppSizes {
   static const double s30 = 30.0;
   static const double s35 = 35.0;
   static const double s50 = 50.0;
+  static const double s85 = 85.0;
 }

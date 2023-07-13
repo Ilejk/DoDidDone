@@ -24,7 +24,7 @@ class OnBoardingPageTwo extends StatelessWidget {
           const HeightSpacer(he: AppSizes.s30),
           CustomOutlineButton(
             onTap: () => GBM.pushAndReplaceNamed(
-                context: context, routeName: Routes.authRoute),
+                context: context, routeName: Routes.loginRoute),
             width: AppValues.deviceWidth * 0.9,
             height: AppValues.deviceHeight * 0.06,
             bgColor: AppColors.secondaryDarkGrey,

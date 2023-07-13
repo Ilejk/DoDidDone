@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/common/utils/manager/strings.dart';
 import 'package:todo_app/features/auth/pages/login_page.dart';
+import 'package:todo_app/features/auth/pages/otp_page.dart';
 import 'package:todo_app/features/onboarding/pages/onboarding_page.dart';
 import 'package:todo_app/features/todo/pages/home_page.dart';
 
 class Routes {
   static const String onBoardingRoute = '/';
   static const String homeRoute = '/homeRoute';
-  static const String authRoute = '/authRoute';
+  static const String loginRoute = '/loginRoute';
+  static const String otpRoute = '/otpRoute';
 }
 
 class RouteGenerator {
@@ -17,8 +19,10 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const OnBoardingPage());
       case Routes.homeRoute:
         return MaterialPageRoute(builder: (_) => const HomePage());
-      case Routes.authRoute:
+      case Routes.loginRoute:
         return MaterialPageRoute(builder: (_) => const LoginPage());
+      case Routes.otpRoute:
+        return MaterialPageRoute(builder: (_) => const OtpPage());
 
       default:
         return undefinedRoute();

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:lottie/lottie.dart';
+import 'package:todo_app/common/global/global_methods.dart';
+import 'package:todo_app/common/routes/router.dart';
 import 'package:todo_app/common/utils/constants/constants.dart';
 import 'package:todo_app/common/utils/manager/assets.dart';
 import 'package:todo_app/common/utils/manager/colors.dart';
@@ -18,7 +20,7 @@ class LoginPage extends ConsumerStatefulWidget {
   const LoginPage({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _LoginPageState();
+  ConsumerState<LoginPage> createState() => _LoginPageState();
 }
 
 class _LoginPageState extends ConsumerState<LoginPage> {
@@ -140,6 +142,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                         );
                       },
                       child: ReusableTextWidget(
+                        textAlign: TextAlign.left,
                         text: '${country.flagEmoji} + ${country.phoneCode}',
                         textStyle: appTextStyle(
                           fontSize: AppFontSizes.fs18,
@@ -167,9 +170,8 @@ class _LoginPageState extends ConsumerState<LoginPage> {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: AppPadding.p10.w),
                 child: CustomOutlineButton(
-                  onTap: () {
-                    //TODO
-                  },
+                  onTap: () => GBM.pushNamed(
+                      context: context, routeName: Routes.otpRoute),
                   width: AppValues.deviceWidth * 0.9,
                   height: AppValues.deviceHeight * 0.06,
                   bgColor: AppColors.secondaryDarkGrey,
