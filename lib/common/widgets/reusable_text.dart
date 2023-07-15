@@ -19,7 +19,7 @@ class ReusableTextWidget extends StatelessWidget {
       maxLines: maxLines,
       textAlign: textAlign,
       softWrap: false,
-      overflow: TextOverflow.fade,
+      overflow: TextOverflow.ellipsis,
       style: textStyle,
     );
   }

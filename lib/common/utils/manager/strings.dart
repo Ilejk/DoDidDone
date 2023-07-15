@@ -8,8 +8,9 @@ class AppStrings {
   static const String loginPageSearch = 'Search';
   static const String homePageTitle = 'Today\'s Tasks';
   static const String homePageAppBarTitle = 'Dashboard';
-  static const String homePageTab1 = 'Pending';
-  static const String homePageTab2 = 'Completed';
+  static const String homePageTab1 = 'Today';
+  static const String homePageTab2 = 'Tomorrow';
+  static const String homePageTab3 = 'Done';
   static const String addTaskTitleHint = 'Title';
   static const String addTaskDescriptionHint = 'Description';
   static const String addTaskAdd = 'ADD TASK';
@@ -19,4 +20,5 @@ class AppStrings {
   static const String homeTomorrowsTitle = 'Tomorrow\'s Tasks';
   static const String homeTomorrowsSubTitle =
       'Check out your tasks\nfor tomorrow!';
+  static const String taskComplete = 'Complete';
 }

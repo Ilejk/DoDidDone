@@ -25,8 +25,9 @@ class TODOtile extends StatelessWidget {
   final String? description;
   final String? startTime;
   final String? endTime;
-  final Widget? editWidget;
   final Color? color;
+  final Widget? editWidget;
+
   final void Function()? deleteFunction;
   final Widget? switchWidget;
   @override
@@ -59,7 +60,7 @@ class TODOtile extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.all(AppPadding.p8.h),
                       child: SizedBox(
-                        width: AppValues.deviceWidth * 0.6,
+                        width: AppValues.deviceWidth * 0.50,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -75,6 +76,7 @@ class TODOtile extends StatelessWidget {
                             ReusableTextWidget(
                               text: description ??
                                   AppStrings.addTaskDescriptionHint,
+                              maxLines: 3,
                               textStyle: appTextStyle(
                                 fontSize: AppFontSizes.fs15,
                                 color: AppColors.white54,
@@ -109,23 +111,6 @@ class TODOtile extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                                WidthSpacer(wi: AppSizes.s20.w),
-                                Row(
-                                  children: [
-                                    SizedBox(
-                                      child: editWidget,
-                                    ),
-                                    WidthSpacer(wi: AppSizes.s20.w),
-                                    GestureDetector(
-                                      onTap: deleteFunction,
-                                      child: Icon(
-                                        MaterialCommunityIcons
-                                            .delete_circle_outline,
-                                        color: AppColors.lightPurple,
-                                      ),
-                                    ),
-                                  ],
-                                ),
                               ],
                             ),
                           ],
@@ -134,8 +119,28 @@ class TODOtile extends StatelessWidget {
                     ),
                   ],
                 ),
-                Container(
-                  child: switchWidget,
+                Column(
+                  children: [
+                    Container(
+                      child: switchWidget,
+                    ),
+                    HeightSpacer(he: AppSizes.s15.h),
+                    Row(
+                      children: [
+                        SizedBox(
+                          child: editWidget,
+                        ),
+                        WidthSpacer(wi: AppSizes.s15.w),
+                        GestureDetector(
+                          onTap: deleteFunction,
+                          child: Icon(
+                            MaterialCommunityIcons.delete_circle_outline,
+                            color: AppColors.lightPurple,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ],
             ),

@@ -40,6 +40,7 @@ class CustomTextField extends StatelessWidget {
         borderRadius: BorderRadius.circular(AppConsts.kRadius),
       ),
       child: TextFormField(
+        autocorrect: false,
         keyboardType: keyboardType,
         controller: controller,
         cursorHeight: AppSizes.s25,

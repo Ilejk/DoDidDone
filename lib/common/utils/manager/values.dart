@@ -12,6 +12,7 @@ class AppFontSizes {
 
   static double fs10 = 10.0.sp;
   static double fs12 = 12.0.sp;
+  static double fs14 = 14.0.sp;
   static double fs15 = 15.0.sp;
   static double fs18 = 18.0.sp;
   static double fs20 = 20.0.sp;
