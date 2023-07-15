@@ -6,7 +6,7 @@ part 'expansion_provider.g.dart';
 class ExpansionState extends _$ExpansionState {
   @override
   bool build() {
-    return false;
+    return true;
   }
 
   void setStart(bool newState) {

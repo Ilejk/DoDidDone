@@ -16,4 +16,7 @@ class AppStrings {
   static const String addTaskDate = 'Set Date';
   static const String addTaskStartTime = 'Starts';
   static const String addTaskEndTime = 'Ends';
+  static const String homeTomorrowsTitle = 'Tomorrow\'s Tasks';
+  static const String homeTomorrowsSubTitle =
+      'Check out your tasks\nfor tomorrow!';
 }

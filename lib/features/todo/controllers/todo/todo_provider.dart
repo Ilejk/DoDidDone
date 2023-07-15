@@ -1,6 +1,9 @@
+import 'dart:math';
+
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:todo_app/common/helpers/db_helper.dart';
 import 'package:todo_app/common/models/taks_model.dart';
+import 'package:todo_app/common/utils/constants/constants.dart';
 
 part 'todo_provider.g.dart';
 
@@ -58,6 +61,12 @@ class TODOStateProvider extends _$TODOStateProvider {
       1,
     );
     refresh();
+  }
+
+  dynamic getRandomColor() {
+    Random random = Random();
+    int randomIndex = random.nextInt(AppConsts.colors.length);
+    return AppConsts.colors[randomIndex];
   }
 
   String getToday() {

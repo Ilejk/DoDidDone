@@ -1,10 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:todo_app/common/global/global_methods.dart';
-import 'package:todo_app/common/models/taks_model.dart';
 import 'package:todo_app/common/routes/router.dart';
 import 'package:todo_app/common/utils/constants/constants.dart';
 import 'package:todo_app/common/utils/manager/colors.dart';
@@ -12,12 +10,11 @@ import 'package:todo_app/common/utils/manager/strings.dart';
 import 'package:todo_app/common/utils/manager/values.dart';
 import 'package:todo_app/common/widgets/app_text_style.dart';
 import 'package:todo_app/common/widgets/custom_textfield.dart';
-import 'package:todo_app/common/widgets/expansion_tile.dart';
 import 'package:todo_app/common/widgets/reusable_text.dart';
 import 'package:todo_app/common/widgets/spacers.dart';
-import 'package:todo_app/features/todo/controllers/expansion/expansion_provider.dart';
 import 'package:todo_app/features/todo/controllers/todo/todo_provider.dart';
-import 'package:todo_app/features/todo/widgets/todo_tile.dart';
+import 'package:todo_app/features/todo/widgets/today_task_tile.dart';
+import 'package:todo_app/features/todo/widgets/tomorrows_task_tile.dart';
 
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
@@ -217,7 +214,7 @@ class _HomePageState extends ConsumerState<HomePage>
                       Container(
                         color: AppColors.secondaryDarkGrey,
                         height: AppValues.deviceHeight * 0.3,
-                        child: TodayTasks(),
+                        child: const TodayTasks(),
                       ),
                       Container(
                         color: AppColors.secondaryDarkGrey,
@@ -228,70 +225,11 @@ class _HomePageState extends ConsumerState<HomePage>
                 ),
               ),
               HeightSpacer(he: AppSizes.s20.h),
-              ExpansionTiles(
-                title: 'Tomorrow\'s Tasks',
-                subtitle: 'Check out your tasks\nfor tomorrow!',
-                children: [],
-                trailing: Padding(
-                  padding: EdgeInsets.only(right: AppPadding.p12.w),
-                  child: ref.watch(expansionStateProvider)
-                      ? Icon(
-                          AntDesign.circledown,
-                          color: AppColors.lightOrange,
-                        )
-                      : Icon(
-                          AntDesign.closecircleo,
-                          color: AppColors.lightOrange,
-                        ),
-                ),
-                onExpnasioncahned: (bool expanded) {
-                  ref
-                      .watch(expansionStateProvider.notifier)
-                      .setStart(!expanded);
-                },
-              ),
+              const TomorrowTaskList(),
             ],
           ),
         ),
       ),
-    );
-  }
-}
-
-class TodayTasks extends ConsumerWidget {
-  const TodayTasks({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    List<TaskModel> listData = ref.watch(tODOStateProviderProvider);
-    String today = ref.read(tODOStateProviderProvider.notifier).getToday();
-    List<TaskModel> todaysList = listData
-        .where((element) =>
-            element.isCompleted == 0 && element.date!.contains(today))
-        .toList();
-
-    return ListView.builder(
-      itemCount: todaysList.length,
-      itemBuilder: (context, index) {
-        final data = todaysList[index];
-        bool isCompleted =
-            ref.read(tODOStateProviderProvider.notifier).getStatus(data);
-        return TODOtile(
-          title: data.title,
-          description: data.description,
-          startTime: data.startTime,
-          endTime: data.endTime,
-          switchWidget: CupertinoSwitch(
-            value: isCompleted,
-            onChanged: (value) {},
-            thumbColor: AppColors.lightOrange,
-            activeColor: AppColors.lightPurple,
-            trackColor: AppColors.secondaryDarkGrey,
-          ),
-        );
-      },
     );
   }
 }

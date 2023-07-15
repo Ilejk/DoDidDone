@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:todo_app/common/utils/constants/constants.dart';
 import 'package:todo_app/common/utils/manager/colors.dart';
+import 'package:todo_app/common/utils/manager/strings.dart';
 import 'package:todo_app/common/utils/manager/values.dart';
 import 'package:todo_app/common/widgets/app_text_style.dart';
 import 'package:todo_app/common/widgets/reusable_text.dart';
@@ -18,12 +19,14 @@ class TODOtile extends StatelessWidget {
     this.editWidget,
     this.deleteFunction,
     this.switchWidget,
+    this.color,
   });
   final String? title;
   final String? description;
   final String? startTime;
   final String? endTime;
   final Widget? editWidget;
+  final Color? color;
   final void Function()? deleteFunction;
   final Widget? switchWidget;
   @override
@@ -48,7 +51,7 @@ class TODOtile extends StatelessWidget {
                       height: AppSizes.s80.h,
                       width: AppSizes.s5.w,
                       decoration: BoxDecoration(
-                        color: AppColors.lightOrange,
+                        color: color,
                         borderRadius: BorderRadius.circular(AppConsts.kRadius),
                       ),
                     ),
@@ -61,7 +64,7 @@ class TODOtile extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             ReusableTextWidget(
-                              text: title ?? 'title',
+                              text: title ?? AppStrings.addTaskTitleHint,
                               textStyle: appTextStyle(
                                 fontSize: AppFontSizes.fs18,
                                 color: AppColors.white,
@@ -70,7 +73,8 @@ class TODOtile extends StatelessWidget {
                             ),
                             HeightSpacer(he: AppSizes.s2.h),
                             ReusableTextWidget(
-                              text: description ?? 'description',
+                              text: description ??
+                                  AppStrings.addTaskDescriptionHint,
                               textStyle: appTextStyle(
                                 fontSize: AppFontSizes.fs15,
                                 color: AppColors.white54,
@@ -115,8 +119,9 @@ class TODOtile extends StatelessWidget {
                                     GestureDetector(
                                       onTap: deleteFunction,
                                       child: Icon(
-                                        MaterialCommunityIcons.delete,
-                                        color: AppColors.lightOrange,
+                                        MaterialCommunityIcons
+                                            .delete_circle_outline,
+                                        color: AppColors.lightPurple,
                                       ),
                                     ),
                                   ],
