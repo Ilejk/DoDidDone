@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:todo_app/common/global/global_methods.dart';
+import 'package:todo_app/common/models/taks_model.dart';
+import 'package:todo_app/common/routes/router.dart';
 import 'package:todo_app/common/utils/constants/constants.dart';
 import 'package:todo_app/common/utils/manager/colors.dart';
 import 'package:todo_app/common/utils/manager/strings.dart';
@@ -13,6 +16,7 @@ import 'package:todo_app/common/widgets/expansion_tile.dart';
 import 'package:todo_app/common/widgets/reusable_text.dart';
 import 'package:todo_app/common/widgets/spacers.dart';
 import 'package:todo_app/features/todo/controllers/expansion/expansion_provider.dart';
+import 'package:todo_app/features/todo/controllers/todo/todo_provider.dart';
 import 'package:todo_app/features/todo/widgets/todo_tile.dart';
 
 class HomePage extends ConsumerStatefulWidget {
@@ -36,6 +40,7 @@ class _HomePageState extends ConsumerState<HomePage>
 
   @override
   Widget build(BuildContext context) {
+    ref.watch(tODOStateProviderProvider.notifier).refresh();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -66,9 +71,8 @@ class _HomePageState extends ConsumerState<HomePage>
                         borderRadius: BorderRadius.circular(AppConsts.kRadius),
                       ),
                       child: GestureDetector(
-                        onTap: () {
-                          //TODO
-                        },
+                        onTap: () => GBM.pushNamed(
+                            context: context, routeName: Routes.addTaskRoute),
                         child: Icon(
                           Icons.add,
                           color: AppColors.primaryDarkGrey,
@@ -213,30 +217,7 @@ class _HomePageState extends ConsumerState<HomePage>
                       Container(
                         color: AppColors.secondaryDarkGrey,
                         height: AppValues.deviceHeight * 0.3,
-                        child: ListView(
-                          children: [
-                            TODOtile(
-                              startTime: '3:00',
-                              endTime: '5:00',
-                              editWidget: Icon(
-                                Icons.edit,
-                                color: AppColors.lightPurple,
-                              ),
-                              switchWidget: RotatedBox(
-                                quarterTurns: 3,
-                                child: CupertinoSwitch(
-                                  thumbColor: AppColors.lightOrange,
-                                  trackColor: AppColors.primaryDarkGrey,
-                                  activeColor: AppColors.lightPurple,
-                                  value: true,
-                                  onChanged: (value) {
-                                    //TODO
-                                  },
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
+                        child: TodayTasks(),
                       ),
                       Container(
                         color: AppColors.secondaryDarkGrey,
@@ -250,28 +231,7 @@ class _HomePageState extends ConsumerState<HomePage>
               ExpansionTiles(
                 title: 'Tomorrow\'s Tasks',
                 subtitle: 'Check out your tasks\nfor tomorrow!',
-                children: [
-                  TODOtile(
-                    startTime: '3:00',
-                    endTime: '5:00',
-                    editWidget: Icon(
-                      Icons.edit,
-                      color: AppColors.lightPurple,
-                    ),
-                    switchWidget: RotatedBox(
-                      quarterTurns: 3,
-                      child: CupertinoSwitch(
-                        thumbColor: AppColors.lightOrange,
-                        trackColor: AppColors.primaryDarkGrey,
-                        activeColor: AppColors.lightPurple,
-                        value: true,
-                        onChanged: (value) {
-                          //TODO
-                        },
-                      ),
-                    ),
-                  ),
-                ],
+                children: [],
                 trailing: Padding(
                   padding: EdgeInsets.only(right: AppPadding.p12.w),
                   child: ref.watch(expansionStateProvider)
@@ -294,6 +254,44 @@ class _HomePageState extends ConsumerState<HomePage>
           ),
         ),
       ),
+    );
+  }
+}
+
+class TodayTasks extends ConsumerWidget {
+  const TodayTasks({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    List<TaskModel> listData = ref.watch(tODOStateProviderProvider);
+    String today = ref.read(tODOStateProviderProvider.notifier).getToday();
+    List<TaskModel> todaysList = listData
+        .where((element) =>
+            element.isCompleted == 0 && element.date!.contains(today))
+        .toList();
+
+    return ListView.builder(
+      itemCount: todaysList.length,
+      itemBuilder: (context, index) {
+        final data = todaysList[index];
+        bool isCompleted =
+            ref.read(tODOStateProviderProvider.notifier).getStatus(data);
+        return TODOtile(
+          title: data.title,
+          description: data.description,
+          startTime: data.startTime,
+          endTime: data.endTime,
+          switchWidget: CupertinoSwitch(
+            value: isCompleted,
+            onChanged: (value) {},
+            thumbColor: AppColors.lightOrange,
+            activeColor: AppColors.lightPurple,
+            trackColor: AppColors.secondaryDarkGrey,
+          ),
+        );
+      },
     );
   }
 }

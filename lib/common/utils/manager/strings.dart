@@ -10,4 +10,10 @@ class AppStrings {
   static const String homePageAppBarTitle = 'Dashboard';
   static const String homePageTab1 = 'Pending';
   static const String homePageTab2 = 'Completed';
+  static const String addTaskTitleHint = 'Title';
+  static const String addTaskDescriptionHint = 'Description';
+  static const String addTaskAdd = 'ADD TASK';
+  static const String addTaskDate = 'Set Date';
+  static const String addTaskStartTime = 'Starts';
+  static const String addTaskEndTime = 'Ends';
 }

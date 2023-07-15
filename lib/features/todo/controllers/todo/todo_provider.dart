@@ -5,7 +5,7 @@ import 'package:todo_app/common/models/taks_model.dart';
 part 'todo_provider.g.dart';
 
 @riverpod
-class TODOProvider extends _$TODOProvider {
+class TODOStateProvider extends _$TODOStateProvider {
   @override
   List<TaskModel> build() {
     return [];

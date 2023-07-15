@@ -4,23 +4,22 @@ import 'package:todo_app/common/models/taks_model.dart';
 
 class DBHelper {
   static Future<void> createTables(sql.Database database) async {
-    await database.execute(
-      "CREATE TABLE todos("
-      "id INTEGER PRIMARY KEY AUTOINCREMENT, "
-      "title STRING, description TEXT, date STRING, "
-      "startTime STRING, endTime STRING, "
-      "remider INTEGER, repeat STRING, "
-      "isCompleted INTEGER)",
-    );
+    await database.execute("CREATE TABLE todos("
+        "id INTEGER PRIMARY KEY AUTOINCREMENT, "
+        "title STRING, description TEXT, date STRING, "
+        "startTime STRING, endTime STRING, "
+        "reminder INTEGER, repeat STRING, "
+        "isCompleted INTEGER)");
+
     await database.execute("CREATE TABLE user("
-        "id INTEGER PRIMARY KEY AUTOINCREMENT, DEFAULT 0, "
+        "id INTEGER PRIMARY KEY AUTOINCREMENT DEFAULT 0, "
         "isVerified INTEGER)");
   }
 
   static Future<sql.Database> db() async {
     return sql.openDatabase(
       'todoDatabasePath',
-      version: 1,
+      version: 5,
       onCreate: (sql.Database database, int version) async {
         await createTables(database);
       },
