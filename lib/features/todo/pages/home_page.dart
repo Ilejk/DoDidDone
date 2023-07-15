@@ -12,6 +12,7 @@ import 'package:todo_app/common/widgets/custom_textfield.dart';
 import 'package:todo_app/common/widgets/expansion_tile.dart';
 import 'package:todo_app/common/widgets/reusable_text.dart';
 import 'package:todo_app/common/widgets/spacers.dart';
+import 'package:todo_app/features/todo/controllers/expansion_provider.dart';
 import 'package:todo_app/features/todo/widgets/todo_tile.dart';
 
 class HomePage extends ConsumerStatefulWidget {
@@ -217,7 +218,10 @@ class _HomePageState extends ConsumerState<HomePage>
                             TODOtile(
                               startTime: '3:00',
                               endTime: '5:00',
-                              editWidget: const Icon(Icons.edit),
+                              editWidget: Icon(
+                                Icons.edit,
+                                color: AppColors.lightPurple,
+                              ),
                               switchWidget: RotatedBox(
                                 quarterTurns: 3,
                                 child: CupertinoSwitch(
@@ -243,10 +247,48 @@ class _HomePageState extends ConsumerState<HomePage>
                 ),
               ),
               HeightSpacer(he: AppSizes.s20.h),
-              const ExpansionTiles(
+              ExpansionTiles(
                 title: 'Tomorrow\'s Tasks',
                 subtitle: 'Check out your tasks\nfor tomorrow!',
-                children: [],
+                children: [
+                  TODOtile(
+                    startTime: '3:00',
+                    endTime: '5:00',
+                    editWidget: Icon(
+                      Icons.edit,
+                      color: AppColors.lightPurple,
+                    ),
+                    switchWidget: RotatedBox(
+                      quarterTurns: 3,
+                      child: CupertinoSwitch(
+                        thumbColor: AppColors.lightOrange,
+                        trackColor: AppColors.primaryDarkGrey,
+                        activeColor: AppColors.lightPurple,
+                        value: true,
+                        onChanged: (value) {
+                          //TODO
+                        },
+                      ),
+                    ),
+                  ),
+                ],
+                trailing: Padding(
+                  padding: EdgeInsets.only(right: AppPadding.p12.w),
+                  child: ref.watch(expansionStateProvider)
+                      ? Icon(
+                          AntDesign.circledown,
+                          color: AppColors.lightOrange,
+                        )
+                      : Icon(
+                          AntDesign.closecircleo,
+                          color: AppColors.lightOrange,
+                        ),
+                ),
+                onExpnasioncahned: (bool expanded) {
+                  ref
+                      .watch(expansionStateProvider.notifier)
+                      .setStart(!expanded);
+                },
               ),
             ],
           ),
