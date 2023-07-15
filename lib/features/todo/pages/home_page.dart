@@ -12,7 +12,7 @@ import 'package:todo_app/common/widgets/custom_textfield.dart';
 import 'package:todo_app/common/widgets/expansion_tile.dart';
 import 'package:todo_app/common/widgets/reusable_text.dart';
 import 'package:todo_app/common/widgets/spacers.dart';
-import 'package:todo_app/features/todo/controllers/expansion_provider.dart';
+import 'package:todo_app/features/todo/controllers/expansion/expansion_provider.dart';
 import 'package:todo_app/features/todo/widgets/todo_tile.dart';
 
 class HomePage extends ConsumerStatefulWidget {

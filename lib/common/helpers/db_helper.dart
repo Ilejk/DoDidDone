@@ -65,7 +65,7 @@ class DBHelper {
     String title,
     String description,
     String startTime,
-    String endtime,
+    String endTime,
     String date,
     int isCompleted,
   ) async {
@@ -75,7 +75,7 @@ class DBHelper {
       'description': description,
       'isCompleted': isCompleted,
       'startTime': startTime,
-      'endTime': endtime,
+      'endTime': endTime,
       'date': date,
     };
     final result = await db.update(
