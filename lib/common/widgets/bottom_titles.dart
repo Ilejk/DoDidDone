@@ -32,7 +32,7 @@ class BottomTitles extends StatelessWidget {
                   height: AppSizes.s80.h,
                   width: AppSizes.s5.w,
                   decoration: BoxDecoration(
-                    color: AppColors.accentDarkYellow, //TODO
+                    color: AppColors.lightOrange, //TODO
                     borderRadius: BorderRadius.circular(AppConsts.kRadius),
                   ),
                 );

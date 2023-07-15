@@ -28,7 +28,7 @@ class OnBoardingPageTwo extends StatelessWidget {
             width: AppValues.deviceWidth * 0.9,
             height: AppValues.deviceHeight * 0.06,
             bgColor: AppColors.secondaryDarkGrey,
-            borderColor: AppColors.accentDarkYellow,
+            borderColor: AppColors.lightOrange,
             textColor: AppColors.white,
             title: 'Login with a phone number',
           )

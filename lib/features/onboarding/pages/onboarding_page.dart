@@ -87,7 +87,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                         dotHeight: AppSizes.s10,
                         dotWidth: AppSizes.s15,
                         spacing: AppSizes.s10,
-                        activeDotColor: AppColors.accentDarkYellow,
+                        activeDotColor: AppColors.lightOrange,
                         dotColor: AppColors.accentDarkGrey,
                       ),
                     ),

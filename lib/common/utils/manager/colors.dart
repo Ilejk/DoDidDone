@@ -13,8 +13,9 @@ class AppColors {
   static Color primaryDarkGrey = HexColor.fromHex('#202020');
   static Color secondaryDarkGrey = HexColor.fromHex('#2D2D2D');
   static Color accentDarkGrey = HexColor.fromHex('#444444');
-  static Color accentDarkYellow = HexColor.fromHex('#DFB63B');
-  static Color accentLightYellow = HexColor.fromHex('#F0CD6D');
+  static Color lightOrange = HexColor.fromHex('#FE776A');
+  static Color lightPurple = HexColor.fromHex('#7D97F4');
+  static Color darkPurple = HexColor.fromHex('#110E72');
 }
 
 extension HexColor on Color {

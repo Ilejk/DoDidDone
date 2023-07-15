@@ -43,7 +43,7 @@ class CustomTextField extends StatelessWidget {
         keyboardType: keyboardType,
         controller: controller,
         cursorHeight: AppSizes.s25,
-        cursorColor: AppColors.accentDarkYellow,
+        cursorColor: AppColors.lightOrange,
         onChanged: onChaned,
         style: textFieldStyle,
         decoration: InputDecoration(
@@ -63,7 +63,7 @@ class CustomTextField extends StatelessWidget {
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(AppConsts.kRadius),
             borderSide: BorderSide(
-              color: AppColors.accentDarkYellow,
+              color: AppColors.lightOrange,
               width: AppSizes.s1,
             ),
           ),

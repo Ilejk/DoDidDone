@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
@@ -11,6 +12,7 @@ import 'package:todo_app/common/widgets/custom_textfield.dart';
 import 'package:todo_app/common/widgets/expansion_tile.dart';
 import 'package:todo_app/common/widgets/reusable_text.dart';
 import 'package:todo_app/common/widgets/spacers.dart';
+import 'package:todo_app/features/todo/widgets/todo_tile.dart';
 
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
@@ -59,7 +61,7 @@ class _HomePageState extends ConsumerState<HomePage>
                       width: AppSizes.s25.w,
                       height: AppSizes.s25.w,
                       decoration: BoxDecoration(
-                        color: AppColors.accentDarkYellow,
+                        color: AppColors.lightOrange,
                         borderRadius: BorderRadius.circular(AppConsts.kRadius),
                       ),
                       child: GestureDetector(
@@ -79,8 +81,8 @@ class _HomePageState extends ConsumerState<HomePage>
               CustomTextField(
                 bgColor: AppColors.secondaryDarkGrey,
                 hintText: AppStrings.loginPageSearch,
-                suffixIconColor: AppColors.accentDarkYellow,
-                prefixIconColor: AppColors.accentDarkYellow,
+                suffixIconColor: AppColors.lightOrange,
+                prefixIconColor: AppColors.lightOrange,
                 hintStyle: appTextStyle(
                     fontSize: AppFontSizes.fs18,
                     color: AppColors.white54,
@@ -92,7 +94,7 @@ class _HomePageState extends ConsumerState<HomePage>
                     fontWeight: FontWeight.w600),
                 suffixIcon: Icon(
                   FontAwesome.sliders,
-                  color: AppColors.accentDarkYellow,
+                  color: AppColors.lightOrange,
                 ),
                 prefixIcon: Padding(
                   padding: const EdgeInsets.all(AppPadding.p4),
@@ -102,7 +104,7 @@ class _HomePageState extends ConsumerState<HomePage>
                     },
                     child: Icon(
                       AntDesign.search1,
-                      color: AppColors.accentDarkYellow,
+                      color: AppColors.lightOrange,
                     ),
                   ),
                 ),
@@ -121,7 +123,7 @@ class _HomePageState extends ConsumerState<HomePage>
                 children: [
                   Icon(
                     FontAwesome.tasks,
-                    color: AppColors.accentDarkYellow,
+                    color: AppColors.lightOrange,
                     size: AppSizes.s20,
                   ),
                   WidthSpacer(wi: AppSizes.s15.w),
@@ -147,7 +149,7 @@ class _HomePageState extends ConsumerState<HomePage>
                     controller: tabController,
                     indicatorSize: TabBarIndicatorSize.label,
                     indicator: BoxDecoration(
-                      color: AppColors.accentDarkYellow,
+                      color: AppColors.lightOrange,
                       borderRadius: BorderRadius.circular(AppConsts.kRadius),
                     ),
                     labelPadding: EdgeInsets.zero,
@@ -210,6 +212,27 @@ class _HomePageState extends ConsumerState<HomePage>
                       Container(
                         color: AppColors.secondaryDarkGrey,
                         height: AppValues.deviceHeight * 0.3,
+                        child: ListView(
+                          children: [
+                            TODOtile(
+                              startTime: '3:00',
+                              endTime: '5:00',
+                              editWidget: const Icon(Icons.edit),
+                              switchWidget: RotatedBox(
+                                quarterTurns: 3,
+                                child: CupertinoSwitch(
+                                  thumbColor: AppColors.lightOrange,
+                                  trackColor: AppColors.primaryDarkGrey,
+                                  activeColor: AppColors.lightPurple,
+                                  value: true,
+                                  onChanged: (value) {
+                                    //TODO
+                                  },
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                       Container(
                         color: AppColors.secondaryDarkGrey,

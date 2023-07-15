@@ -74,7 +74,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                   bgColor: AppColors.secondaryDarkGrey,
                   hintText: AppStrings.loginPageHint,
                   keyboardType: TextInputType.phone,
-                  suffixIconColor: AppColors.accentDarkYellow,
+                  suffixIconColor: AppColors.lightOrange,
                   prefixIconColor: AppColors.white,
                   hintStyle: appTextStyle(
                     fontSize: AppFontSizes.fs15,
@@ -124,7 +124,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                                 borderRadius:
                                     BorderRadius.circular(AppConsts.kRadius),
                                 borderSide: BorderSide(
-                                  color: AppColors.accentDarkYellow,
+                                  color: AppColors.lightOrange,
                                   width: AppSizes.s1,
                                 ),
                               ),
@@ -175,7 +175,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                   width: AppValues.deviceWidth * 0.9,
                   height: AppValues.deviceHeight * 0.06,
                   bgColor: AppColors.secondaryDarkGrey,
-                  borderColor: AppColors.accentDarkYellow,
+                  borderColor: AppColors.lightOrange,
                   textColor: AppColors.white,
                   title: 'Send Code',
                 ),
