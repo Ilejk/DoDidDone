@@ -21,4 +21,5 @@ class AppStrings {
   static const String homeTomorrowsSubTitle =
       'Check out your tasks\nfor tomorrow!';
   static const String taskComplete = 'Complete';
+  static const String updateTask = 'UPDATE';
 }

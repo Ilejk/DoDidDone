@@ -158,7 +158,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                       onTap: () {
                         //TODO
                       },
-                      child: Icon(Icons.abc),
+                      child: const Icon(Icons.abc),
                     ),
                   ),
                   onChaned: (value) {

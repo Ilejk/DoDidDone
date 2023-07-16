@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:lottie/lottie.dart';
 import 'package:todo_app/common/global/global_methods.dart';
-import 'package:todo_app/common/models/taks_model.dart';
 import 'package:todo_app/common/utils/constants/constants.dart';
 import 'package:todo_app/common/utils/manager/assets.dart';
 import 'package:todo_app/common/utils/manager/colors.dart';
@@ -228,17 +227,15 @@ class _AddTaskPageState extends ConsumerState<UpdateTaskPage> {
                     titleController.text.isNotEmpty &&
                     descriptionController.text.isNotEmpty;
                 if (fieldsAreNotEmpty) {
-                  TaskModel task = TaskModel(
-                    title: titleController.text,
-                    description: descriptionController.text,
-                    isCompleted: 0,
-                    date: scheduledDate.substring(0, 10),
-                    startTime: scheduledStartTime.substring(10, 16),
-                    endTime: scheduledEndtime.substring(10, 16),
-                    reminder: 0,
-                    repeat: 'yes',
-                  );
-                  ref.read(tODOStateProviderProvider.notifier).addItem(task);
+                  ref.read(tODOStateProviderProvider.notifier).updateItem(
+                        widget.id,
+                        titleController.text,
+                        descriptionController.text,
+                        scheduledEndtime.substring(10, 16),
+                        scheduledStartTime.substring(10, 16),
+                        scheduledDate.substring(0, 10),
+                        0,
+                      );
                   ref
                       .read(endTimeStateProvider.notifier)
                       .setEndTime(AppConsts.empty);
@@ -256,7 +253,7 @@ class _AddTaskPageState extends ConsumerState<UpdateTaskPage> {
               bgColor: AppColors.lightOrange,
               borderColor: AppColors.lightOrange,
               textColor: AppColors.white,
-              title: AppStrings.addTaskAdd,
+              title: AppStrings.updateTask,
             ),
           ],
         ),
