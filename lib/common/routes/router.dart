@@ -5,6 +5,7 @@ import 'package:todo_app/features/auth/pages/otp_page.dart';
 import 'package:todo_app/features/onboarding/pages/onboarding_page.dart';
 import 'package:todo_app/features/todo/pages/add_task_page.dart';
 import 'package:todo_app/features/todo/pages/home_page.dart';
+import 'package:todo_app/features/todo/pages/update_task_page.dart';
 
 class Routes {
   static const String onBoardingRoute = '/';
@@ -12,6 +13,7 @@ class Routes {
   static const String loginRoute = '/loginRoute';
   static const String otpRoute = '/otpRoute';
   static const String addTaskRoute = '/addTaskRoute';
+  static const String updateTaskRoute = '/updateTaskRoute';
 }
 
 class RouteGenerator {
@@ -27,6 +29,12 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const OtpPage());
       case Routes.addTaskRoute:
         return MaterialPageRoute(builder: (_) => const AddTaskPage());
+      case Routes.updateTaskRoute:
+        final taskId = routeSettings.arguments as int;
+        return MaterialPageRoute(
+            builder: (_) => UpdateTaskPage(
+                  id: taskId,
+                ));
 
       default:
         return undefinedRoute();

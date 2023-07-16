@@ -5,3 +5,6 @@ class AppConsts {
   static const double kRadius = AppSizes.s15;
   static const String empty = '';
 }
+
+String TITLE = '';
+String DESCRIPTION = '';

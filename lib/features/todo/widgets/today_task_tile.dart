@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:todo_app/common/global/global_methods.dart';
 import 'package:todo_app/common/models/taks_model.dart';
+import 'package:todo_app/common/routes/router.dart';
 import 'package:todo_app/common/utils/constants/constants.dart';
 import 'package:todo_app/common/utils/manager/colors.dart';
 import 'package:todo_app/common/utils/manager/strings.dart';
@@ -44,7 +46,13 @@ class TodayTasks extends ConsumerWidget {
           },
           editWidget: GestureDetector(
             onTap: () {
-              //TODO
+              TITLE = data.title.toString();
+              DESCRIPTION = data.description.toString();
+              GBM.pushNamed(
+                context: context,
+                routeName: Routes.updateTaskRoute,
+                arguments: data.id ?? 0,
+              );
             },
             child: Icon(
               MaterialCommunityIcons.circle_edit_outline,
@@ -68,7 +76,9 @@ class TodayTasks extends ConsumerWidget {
                 color: AppColors.primaryDarkGrey,
                 borderRadius: BorderRadius.circular(AppConsts.kRadius),
                 border: Border.all(
-                    color: AppColors.lightOrange, width: AppSizes.s1),
+                  color: AppColors.lightOrange,
+                  width: AppSizes.s1,
+                ),
               ),
               child: Padding(
                 padding: EdgeInsets.symmetric(
