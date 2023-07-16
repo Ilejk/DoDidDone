@@ -1,10 +1,13 @@
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:todo_app/common/models/user_model.dart';
 import 'package:todo_app/common/routes/router.dart';
 import 'package:todo_app/common/utils/manager/colors.dart';
+import 'package:todo_app/features/auth/controllers/user_controller.dart';
 
-class TodoApp extends StatelessWidget {
+class TodoApp extends ConsumerWidget {
   const TodoApp({super.key});
 
   static final defaultLightColorScheme =
@@ -13,7 +16,9 @@ class TodoApp extends StatelessWidget {
       primarySwatch: Colors.purple, brightness: Brightness.dark);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    ref.read(userProvider.notifier).refresh();
+    List<UserModel> users = ref.watch(userProvider);
     return ScreenUtilInit(
       useInheritedMediaQuery: true,
       designSize: const Size(375, 825),
@@ -34,7 +39,8 @@ class TodoApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             themeMode: ThemeMode.dark,
             onGenerateRoute: RouteGenerator.getRoute,
-            initialRoute: Routes.homeRoute,
+            initialRoute:
+                users.isEmpty ? Routes.onBoardingRoute : Routes.homeRoute,
           );
         });
       },

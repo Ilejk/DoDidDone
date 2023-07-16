@@ -10,8 +10,10 @@ import 'package:todo_app/common/widgets/reusable_text.dart';
 import 'package:todo_app/common/widgets/spacers.dart';
 
 class OtpPage extends StatefulWidget {
-  const OtpPage({super.key});
-
+  const OtpPage(
+      {super.key, required this.smsCodeID, required this.phoneNumber});
+  final String smsCodeID;
+  final String phoneNumber;
   @override
   State<OtpPage> createState() => _OtpPageState();
 }

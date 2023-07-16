@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:lottie/lottie.dart';
-import 'package:todo_app/common/global/global_methods.dart';
-import 'package:todo_app/common/routes/router.dart';
 import 'package:todo_app/common/utils/constants/constants.dart';
 import 'package:todo_app/common/utils/manager/assets.dart';
 import 'package:todo_app/common/utils/manager/colors.dart';
@@ -14,7 +12,10 @@ import 'package:todo_app/common/widgets/app_text_style.dart';
 import 'package:todo_app/common/widgets/custom_outline_button.dart';
 import 'package:todo_app/common/widgets/custom_textfield.dart';
 import 'package:todo_app/common/widgets/reusable_text.dart';
+import 'package:todo_app/common/widgets/show_dialog.dart';
 import 'package:todo_app/common/widgets/spacers.dart';
+import 'package:todo_app/features/auth/controllers/auth_controller.dart';
+import 'package:todo_app/features/auth/controllers/code_provider.dart';
 
 class LoginPage extends ConsumerStatefulWidget {
   const LoginPage({super.key});
@@ -26,17 +27,38 @@ class LoginPage extends ConsumerStatefulWidget {
 class _LoginPageState extends ConsumerState<LoginPage> {
   final TextEditingController phoneController = TextEditingController();
   Country country = Country(
-    phoneCode: '1',
-    countryCode: 'US',
+    phoneCode: '48',
+    countryCode: 'PL',
     e164Sc: 0,
     geographic: true,
     level: 1,
-    name: 'USA',
-    example: 'USA',
-    displayName: 'United States',
-    displayNameNoCountryCode: 'US',
+    name: 'Poland',
+    example: 'Poland',
+    displayName: 'Poland',
+    displayNameNoCountryCode: 'PL',
     e164Key: '',
   );
+
+  sendCodeToUser() {
+    if (phoneController.text.isEmpty) {
+      return showAlertDialog(
+        context: context,
+        message: AppStrings.providePhoneNumber,
+      );
+    } else if (phoneController.text.length < 8) {
+      return showAlertDialog(
+        context: context,
+        message: AppStrings.phoneNumberIsTooShort,
+      );
+    }
+
+    ref.read(authControllerProvider).sendSMS(
+          context: context,
+          phoneNumber: '+${country.phoneCode}${phoneController.text}',
+        );
+    print('+${country.phoneCode}${phoneController.text}');
+  }
+
   @override
   void dispose() {
     super.dispose();
@@ -137,7 +159,9 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                             ),
                           ),
                           onSelect: (code) {
-                            setState(() {});
+                            setState(() {
+                              country = code;
+                            });
                           },
                         );
                       },
@@ -156,9 +180,11 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                     padding: EdgeInsets.all(AppPadding.p4.w),
                     child: GestureDetector(
                       onTap: () {
-                        //TODO
+                        setState(() {
+                          phoneController.text = AppConsts.empty;
+                        });
                       },
-                      child: const Icon(Icons.abc),
+                      child: const Icon(Icons.delete),
                     ),
                   ),
                   onChaned: (value) {
@@ -170,14 +196,15 @@ class _LoginPageState extends ConsumerState<LoginPage> {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: AppPadding.p10.w),
                 child: CustomOutlineButton(
-                  onTap: () => GBM.pushNamed(
-                      context: context, routeName: Routes.otpRoute),
+                  onTap: () {
+                    sendCodeToUser();
+                  },
                   width: AppValues.deviceWidth * 0.9,
                   height: AppValues.deviceHeight * 0.06,
                   bgColor: AppColors.secondaryDarkGrey,
                   borderColor: AppColors.lightOrange,
                   textColor: AppColors.white,
-                  title: 'Send Code',
+                  title: AppStrings.loginPageSend,
                 ),
               )
             ],

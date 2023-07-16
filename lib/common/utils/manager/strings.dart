@@ -22,4 +22,7 @@ class AppStrings {
       'Check out your tasks\nfor tomorrow!';
   static const String taskComplete = 'Complete';
   static const String updateTask = 'UPDATE';
+  static const String providePhoneNumber = 'Please provide your phone number!';
+  static const String phoneNumberIsTooShort = 'Phone number is too short!';
+  static const String loginPageSend = 'Send Code';
 }

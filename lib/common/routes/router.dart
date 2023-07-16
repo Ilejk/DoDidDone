@@ -26,15 +26,22 @@ class RouteGenerator {
       case Routes.loginRoute:
         return MaterialPageRoute(builder: (_) => const LoginPage());
       case Routes.otpRoute:
-        return MaterialPageRoute(builder: (_) => const OtpPage());
+        final Map args = routeSettings.arguments as Map;
+        return MaterialPageRoute(
+          builder: (_) => OtpPage(
+            smsCodeID: args['smsCodeID'],
+            phoneNumber: args['phoneNumber'],
+          ),
+        );
       case Routes.addTaskRoute:
         return MaterialPageRoute(builder: (_) => const AddTaskPage());
       case Routes.updateTaskRoute:
         final taskId = routeSettings.arguments as int;
         return MaterialPageRoute(
-            builder: (_) => UpdateTaskPage(
-                  id: taskId,
-                ));
+          builder: (_) => UpdateTaskPage(
+            id: taskId,
+          ),
+        );
 
       default:
         return undefinedRoute();
