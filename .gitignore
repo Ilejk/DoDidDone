@@ -10,6 +10,9 @@
 .svn/
 migrate_working_dir/
 firebase_options.dart
+ios/Runner/GoogleService-Info.plist
+**/GoogleService-Info.plist
+!ios/Runner/GoogleService-Info.plist
 # IntelliJ related
 *.iml
 *.ipr
