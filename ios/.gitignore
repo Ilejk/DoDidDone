@@ -30,7 +30,8 @@ firebase_app_id_file.json
 info.plist
 Podfile
 Podfile.lock
-ios/Runner/GoogleService-Info.plist
+**/GoogleService-Info.plist
+!ios/Runner/GoogleService-Info.plist
 # Exceptions to above rules.
 !default.mode1v3
 !default.mode2v3
