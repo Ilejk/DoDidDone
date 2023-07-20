@@ -1,6 +1,6 @@
 import 'package:todo_app/common/export/export.dart';
 
-class OtpPage extends StatefulWidget {
+class OtpPage extends ConsumerStatefulWidget {
   const OtpPage({
     super.key,
     required this.smsCodeID,
@@ -11,10 +11,11 @@ class OtpPage extends StatefulWidget {
   final String phoneNumber;
 
   @override
-  State<OtpPage> createState() => _OtpPageState();
+  ConsumerState<OtpPage> createState() => _OtpPageState();
 }
 
-class _OtpPageState extends State<OtpPage> with SingleTickerProviderStateMixin {
+class _OtpPageState extends ConsumerState<OtpPage>
+    with SingleTickerProviderStateMixin {
   bool animate = false;
   AnimationController? _animationController;
   @override
@@ -28,6 +29,19 @@ class _OtpPageState extends State<OtpPage> with SingleTickerProviderStateMixin {
           _animationController!.stop();
         }
       });
+  }
+
+  void verifyOTP({
+    required BuildContext context,
+    required WidgetRef ref,
+    required String smsCode,
+  }) {
+    ref.read(authControllerProvider).verifyOTP(
+          context: context,
+          smsCodeID: widget.smsCodeID,
+          smsCode: smsCode,
+          mounted: true,
+        );
   }
 
   @override
@@ -74,13 +88,21 @@ class _OtpPageState extends State<OtpPage> with SingleTickerProviderStateMixin {
                 onCompleted: (value) {
                   var isCodeLengthValid = value.length == 6;
                   if (isCodeLengthValid) {
-                    //TODO
+                    return verifyOTP(
+                      context: context,
+                      ref: ref,
+                      smsCode: value,
+                    );
                   }
                 },
                 onSubmitted: (value) {
                   var isCodeLengthValid = value.length == 6;
                   if (isCodeLengthValid) {
-                    //TODO
+                    return verifyOTP(
+                      context: context,
+                      ref: ref,
+                      smsCode: value,
+                    );
                   }
                 },
               ),

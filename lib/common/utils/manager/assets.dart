@@ -8,6 +8,7 @@ class AppAnimations {
   static const String onboarding2 = '$animationPath/onboarding2.json';
   static const String login = '$animationPath/login.json';
   static const String otp = '$animationPath/otp.json';
+  static const String notifcations = '$animationPath/notifications.json';
 }
 
 const String imagePath = 'assets/images';
