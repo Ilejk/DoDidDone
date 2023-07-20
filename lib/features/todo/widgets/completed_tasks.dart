@@ -1,9 +1,4 @@
-import 'package:flutter/cupertino.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:todo_app/common/models/taks_model.dart';
-import 'package:todo_app/common/utils/manager/colors.dart';
-import 'package:todo_app/features/todo/controllers/todo/todo_provider.dart';
-import 'package:todo_app/features/todo/widgets/todo_tile.dart';
+import 'package:todo_app/common/export/export.dart';
 
 class CompletedTasks extends ConsumerWidget {
   const CompletedTasks({

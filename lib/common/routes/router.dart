@@ -1,11 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:todo_app/common/utils/manager/strings.dart';
-import 'package:todo_app/features/auth/pages/login_page.dart';
-import 'package:todo_app/features/auth/pages/otp_page.dart';
-import 'package:todo_app/features/onboarding/pages/onboarding_page.dart';
-import 'package:todo_app/features/todo/pages/add_task_page.dart';
-import 'package:todo_app/features/todo/pages/home_page.dart';
-import 'package:todo_app/features/todo/pages/update_task_page.dart';
+import 'package:todo_app/common/export/export.dart';
 
 class Routes {
   static const String onBoardingRoute = '/';

@@ -1,21 +1,4 @@
-import 'package:country_picker/country_picker.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:lottie/lottie.dart';
-import 'package:todo_app/common/utils/constants/constants.dart';
-import 'package:todo_app/common/utils/manager/assets.dart';
-import 'package:todo_app/common/utils/manager/colors.dart';
-import 'package:todo_app/common/utils/manager/strings.dart';
-import 'package:todo_app/common/utils/manager/values.dart';
-import 'package:todo_app/common/widgets/app_text_style.dart';
-import 'package:todo_app/common/widgets/custom_outline_button.dart';
-import 'package:todo_app/common/widgets/custom_textfield.dart';
-import 'package:todo_app/common/widgets/reusable_text.dart';
-import 'package:todo_app/common/widgets/show_dialog.dart';
-import 'package:todo_app/common/widgets/spacers.dart';
-import 'package:todo_app/features/auth/controllers/auth_controller.dart';
-import 'package:todo_app/features/auth/controllers/code_provider.dart';
+import 'package:todo_app/common/export/export.dart';
 
 class LoginPage extends ConsumerStatefulWidget {
   const LoginPage({super.key});
@@ -26,18 +9,7 @@ class LoginPage extends ConsumerStatefulWidget {
 
 class _LoginPageState extends ConsumerState<LoginPage> {
   final TextEditingController phoneController = TextEditingController();
-  Country country = Country(
-    phoneCode: '48',
-    countryCode: 'PL',
-    e164Sc: 0,
-    geographic: true,
-    level: 1,
-    name: 'Poland',
-    example: 'Poland',
-    displayName: 'Poland',
-    displayNameNoCountryCode: 'PL',
-    e164Key: '',
-  );
+  Country country = COUNTRYBASE;
 
   sendCodeToUser() {
     if (phoneController.text.isEmpty) {
@@ -56,7 +28,6 @@ class _LoginPageState extends ConsumerState<LoginPage> {
           context: context,
           phoneNumber: '+${country.phoneCode}${phoneController.text}',
         );
-    print('+${country.phoneCode}${phoneController.text}');
   }
 
   @override

@@ -1,14 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_vector_icons/flutter_vector_icons.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:todo_app/common/utils/manager/colors.dart';
-import 'package:todo_app/common/utils/manager/values.dart';
-import 'package:todo_app/common/widgets/app_text_style.dart';
-import 'package:todo_app/common/widgets/reusable_text.dart';
-import 'package:todo_app/common/widgets/spacers.dart';
-import 'package:todo_app/features/onboarding/widgets/page_one.dart';
-import 'package:todo_app/features/onboarding/widgets/page_two.dart';
+import 'package:todo_app/common/export/export.dart';
 
 class OnBoardingPage extends StatefulWidget {
   const OnBoardingPage({super.key});
@@ -66,7 +56,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                         ),
                         const WidthSpacer(wi: AppSizes.s5),
                         ReusableTextWidget(
-                          text: 'Skip',
+                          text: AppStrings.onBoardingSkip,
                           textStyle: appTextStyle(
                             fontSize: AppFontSizes.fs15,
                             color: AppColors.white,

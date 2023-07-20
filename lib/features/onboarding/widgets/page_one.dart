@@ -1,12 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
-import 'package:todo_app/common/utils/manager/assets.dart';
-import 'package:todo_app/common/utils/manager/colors.dart';
-import 'package:todo_app/common/utils/manager/strings.dart';
-import 'package:todo_app/common/utils/manager/values.dart';
-import 'package:todo_app/common/widgets/app_text_style.dart';
-import 'package:todo_app/common/widgets/reusable_text.dart';
-import 'package:todo_app/common/widgets/spacers.dart';
+import 'package:todo_app/common/export/export.dart';
 
 class OnBoardingPageOne extends StatelessWidget {
   const OnBoardingPageOne({super.key});

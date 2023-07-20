@@ -1,4 +1,4 @@
-import 'package:todo_app/common/utils/manager/values.dart';
+import 'package:todo_app/common/export/export.dart';
 
 class AppConsts {
   AppConsts._();
@@ -8,3 +8,15 @@ class AppConsts {
 
 String TITLE = '';
 String DESCRIPTION = '';
+Country COUNTRYBASE = Country(
+  phoneCode: '48',
+  countryCode: 'PL',
+  e164Sc: 0,
+  geographic: true,
+  level: 1,
+  name: 'Poland',
+  example: 'Poland',
+  displayName: 'Poland',
+  displayNameNoCountryCode: 'PL',
+  e164Key: '',
+);

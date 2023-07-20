@@ -1,11 +1,4 @@
-import 'package:dynamic_color/dynamic_color.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:todo_app/common/models/user_model.dart';
-import 'package:todo_app/common/routes/router.dart';
-import 'package:todo_app/common/utils/manager/colors.dart';
-import 'package:todo_app/features/auth/controllers/user_controller.dart';
+import 'package:todo_app/common/export/export.dart';
 
 class TodoApp extends ConsumerWidget {
   const TodoApp({super.key});

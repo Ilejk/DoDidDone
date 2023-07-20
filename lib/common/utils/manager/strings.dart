@@ -25,4 +25,7 @@ class AppStrings {
   static const String providePhoneNumber = 'Please provide your phone number!';
   static const String phoneNumberIsTooShort = 'Phone number is too short!';
   static const String loginPageSend = 'Send Code';
+  static const String otpPageEnter = 'Enter your code';
+  static const String onBoardingSkip = 'Skip';
+  static const String page2Login = 'Login with a phone number';
 }

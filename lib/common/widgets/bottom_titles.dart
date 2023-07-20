@@ -1,12 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:todo_app/common/utils/constants/constants.dart';
-import 'package:todo_app/common/utils/manager/colors.dart';
-import 'package:todo_app/common/utils/manager/values.dart';
-import 'package:todo_app/common/widgets/app_text_style.dart';
-import 'package:todo_app/common/widgets/reusable_text.dart';
-import 'package:todo_app/common/widgets/spacers.dart';
+import 'package:todo_app/common/export/export.dart';
 
 class BottomTitles extends StatelessWidget {
   const BottomTitles({

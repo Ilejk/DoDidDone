@@ -1,19 +1,15 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lottie/lottie.dart';
-import 'package:pinput/pinput.dart';
-import 'package:todo_app/common/utils/manager/assets.dart';
-import 'package:todo_app/common/utils/manager/colors.dart';
-import 'package:todo_app/common/utils/manager/values.dart';
-import 'package:todo_app/common/widgets/app_text_style.dart';
-import 'package:todo_app/common/widgets/reusable_text.dart';
-import 'package:todo_app/common/widgets/spacers.dart';
+import 'package:todo_app/common/export/export.dart';
 
 class OtpPage extends StatefulWidget {
-  const OtpPage(
-      {super.key, required this.smsCodeID, required this.phoneNumber});
+  const OtpPage({
+    super.key,
+    required this.smsCodeID,
+    required this.phoneNumber,
+  });
+
   final String smsCodeID;
   final String phoneNumber;
+
   @override
   State<OtpPage> createState() => _OtpPageState();
 }
@@ -64,7 +60,7 @@ class _OtpPageState extends State<OtpPage> with SingleTickerProviderStateMixin {
               ),
               HeightSpacer(he: AppSizes.s25.h),
               ReusableTextWidget(
-                text: 'Enter your code',
+                text: AppStrings.otpPageEnter,
                 textStyle: appTextStyle(
                   fontSize: AppFontSizes.fs18,
                   color: AppColors.white,
@@ -76,12 +72,14 @@ class _OtpPageState extends State<OtpPage> with SingleTickerProviderStateMixin {
                 length: 6,
                 showCursor: true,
                 onCompleted: (value) {
-                  if (value.length == 6) {
+                  var isCodeLengthValid = value.length == 6;
+                  if (isCodeLengthValid) {
                     //TODO
                   }
                 },
                 onSubmitted: (value) {
-                  if (value.length == 6) {
+                  var isCodeLengthValid = value.length == 6;
+                  if (isCodeLengthValid) {
                     //TODO
                   }
                 },
