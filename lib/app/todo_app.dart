@@ -1,5 +1,4 @@
 import 'package:todo_app/common/export/export.dart';
-import 'package:todo_app/features/todo/pages/notifications_page.dart';
 
 class TodoApp extends ConsumerWidget {
   const TodoApp({super.key});
@@ -33,9 +32,8 @@ class TodoApp extends ConsumerWidget {
             debugShowCheckedModeBanner: false,
             themeMode: ThemeMode.dark,
             onGenerateRoute: RouteGenerator.getRoute,
-            home: NotificationsPage(),
-            // initialRoute:
-            //     users.isEmpty ? Routes.onBoardingRoute : Routes.homeRoute,
+            initialRoute:
+                users.isEmpty ? Routes.onBoardingRoute : Routes.homeRoute,
           );
         });
       },

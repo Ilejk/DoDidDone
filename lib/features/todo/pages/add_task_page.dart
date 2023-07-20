@@ -13,6 +13,18 @@ class AddTaskPage extends ConsumerStatefulWidget {
 class _AddTaskPageState extends ConsumerState<AddTaskPage> {
   final TextEditingController titleController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
+  late NotificationsHelper notificationsHelper;
+  late NotificationsHelper controller;
+  List<int> notifications = [];
+  @override
+  void initState() {
+    super.initState();
+    notificationsHelper = NotificationsHelper(ref: ref);
+    Future.delayed(const Duration(seconds: 0),
+        () => controller = NotificationsHelper(ref: ref));
+    notificationsHelper.initializeNotifications();
+  }
+
   @override
   void dispose() {
     titleController.dispose();
@@ -22,9 +34,9 @@ class _AddTaskPageState extends ConsumerState<AddTaskPage> {
 
   @override
   Widget build(BuildContext context) {
-    var scheduledDate = ref.watch(dateStateProvider);
-    var scheduledStartTime = ref.watch(startTimeStateProvider);
-    var scheduledEndtime = ref.watch(endTimeStateProvider);
+    String scheduledDate = ref.watch(dateStateProvider);
+    String scheduledStartTime = ref.watch(startTimeStateProvider);
+    String scheduledEndtime = ref.watch(endTimeStateProvider);
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -126,31 +138,38 @@ class _AddTaskPageState extends ConsumerState<AddTaskPage> {
               children: [
                 CustomOutlineButton(
                   onTap: () {
-                    picker.DatePicker.showDateTimePicker(context,
-                        showTitleActions: true,
-                        theme: picker.DatePickerTheme(
-                          headerColor: AppColors.secondaryDarkGrey,
-                          backgroundColor: AppColors.primaryDarkGrey,
-                          itemStyle: appTextStyle(
-                            fontSize: AppFontSizes.fs18,
-                            color: AppColors.white,
-                            fontWeight: FontWeight.w600,
-                          ),
-                          doneStyle: appTextStyle(
-                            fontSize: AppFontSizes.fs15,
-                            color: AppColors.white,
-                            fontWeight: FontWeight.normal,
-                          ),
-                          cancelStyle: appTextStyle(
-                            fontSize: AppFontSizes.fs15,
-                            color: AppColors.lightOrange,
-                            fontWeight: FontWeight.normal,
-                          ),
-                        ), onConfirm: (date) {
-                      ref
-                          .read(startTimeStateProvider.notifier)
-                          .setStartTime(date.toString());
-                    }, locale: picker.LocaleType.en);
+                    picker.DatePicker.showDateTimePicker(
+                      context,
+                      showTitleActions: true,
+                      theme: picker.DatePickerTheme(
+                        headerColor: AppColors.secondaryDarkGrey,
+                        backgroundColor: AppColors.primaryDarkGrey,
+                        itemStyle: appTextStyle(
+                          fontSize: AppFontSizes.fs18,
+                          color: AppColors.white,
+                          fontWeight: FontWeight.w600,
+                        ),
+                        doneStyle: appTextStyle(
+                          fontSize: AppFontSizes.fs15,
+                          color: AppColors.white,
+                          fontWeight: FontWeight.normal,
+                        ),
+                        cancelStyle: appTextStyle(
+                          fontSize: AppFontSizes.fs15,
+                          color: AppColors.lightOrange,
+                          fontWeight: FontWeight.normal,
+                        ),
+                      ),
+                      onConfirm: (date) {
+                        ref
+                            .read(startTimeStateProvider.notifier)
+                            .setStartTime(date.toString());
+                        notifications = ref
+                            .read(startTimeStateProvider.notifier)
+                            .dates(date);
+                      },
+                      locale: picker.LocaleType.en,
+                    );
                   },
                   width: AppValues.deviceWidth * 0.4,
                   height: AppSizes.s50.h,
@@ -203,7 +222,7 @@ class _AddTaskPageState extends ConsumerState<AddTaskPage> {
             HeightSpacer(he: AppSizes.s50.h),
             CustomOutlineButton(
               onTap: () {
-                var fieldsAreNotEmpty = scheduledEndtime != AppConsts.empty &&
+                bool fieldsAreNotEmpty = scheduledEndtime != AppConsts.empty &&
                     scheduledStartTime != AppConsts.empty &&
                     scheduledDate != AppConsts.empty &&
                     titleController.text.isNotEmpty &&
@@ -219,17 +238,20 @@ class _AddTaskPageState extends ConsumerState<AddTaskPage> {
                     reminder: 0,
                     repeat: 'yes',
                   );
+                  notificationsHelper.scheduledNotifications(
+                    notifications[0],
+                    notifications[1],
+                    notifications[2],
+                    notifications[3],
+                    task,
+                  );
                   ref.read(tODOStateProviderProvider.notifier).addItem(task);
-                  ref
-                      .read(endTimeStateProvider.notifier)
-                      .setEndTime(AppConsts.empty);
-                  ref
-                      .read(startTimeStateProvider.notifier)
-                      .setStartTime(AppConsts.empty);
-                  ref.read(dateStateProvider.notifier).setDate(AppConsts.empty);
-                  GBM.pop(context: context);
+
+                  GBM.pushAndReplaceNamed(
+                      context: context, routeName: Routes.homeRoute);
                 } else {
-                  print('error');
+                  showAlertDialog(
+                      context: context, message: 'Failed to add the task');
                 }
               },
               width: AppValues.deviceWidth,

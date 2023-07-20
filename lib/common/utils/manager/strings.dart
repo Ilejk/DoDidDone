@@ -28,4 +28,6 @@ class AppStrings {
   static const String otpPageEnter = 'Enter your code';
   static const String onBoardingSkip = 'Skip';
   static const String page2Login = 'Login with a phone number';
+  static const String notificationPageRemider = 'Remider';
+  static const String notificationPageToday = 'Today';
 }

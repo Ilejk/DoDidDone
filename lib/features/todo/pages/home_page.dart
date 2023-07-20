@@ -12,6 +12,17 @@ class _HomePageState extends ConsumerState<HomePage>
   TextEditingController searchController = TextEditingController();
   late final TabController tabController =
       TabController(length: 3, vsync: this);
+  late NotificationsHelper notificationsHelper;
+  late NotificationsHelper controller;
+  @override
+  void initState() {
+    super.initState();
+    notificationsHelper = NotificationsHelper(ref: ref);
+    Future.delayed(const Duration(seconds: 0),
+        () => controller = NotificationsHelper(ref: ref));
+    notificationsHelper.initializeNotifications();
+    notificationsHelper.requestIOSPermissions();
+  }
 
   @override
   void dispose() {
