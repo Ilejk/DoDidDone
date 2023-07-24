@@ -62,6 +62,7 @@ class _HomePageState extends ConsumerState<HomePage>
           textStyle: appTextStyle(
             fontSize: AppFontSizes.fs18,
             color: AppColors.white,
+            letterSpacing: AppSizes.s1,
             fontWeight: FontWeight.w600,
           ),
         ),

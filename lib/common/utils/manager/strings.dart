@@ -6,8 +6,7 @@ class AppStrings {
   static const String loginPageTitle = 'Please provide your phone number';
   static const String loginPageHint = 'Enter phone number';
   static const String loginPageSearch = 'Search';
-  static const String homePageTitle = 'Today\'s Tasks';
-  static const String homePageAppBarTitle = 'Dashboard';
+  static const String homePageAppBarTitle = 'DoDidDone!';
   static const String homePageTab1 = 'Today';
   static const String homePageTab2 = 'Tomorrow';
   static const String homePageTab3 = 'Done';

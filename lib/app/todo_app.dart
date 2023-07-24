@@ -12,7 +12,6 @@ class TodoApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     ref.read(userProvider.notifier).refresh();
     List<UserModel> users = ref.watch(userProvider);
-    print(users.length);
     String initialRoute =
         users.isEmpty ? Routes.onBoardingRoute : Routes.homeRoute;
     return ScreenUtilInit(
