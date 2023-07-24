@@ -46,7 +46,7 @@ class TomorrowTaskList extends ConsumerWidget {
               color: AppColors.lightPurple,
             ),
           ),
-          switchWidget: GestureDetector(
+          completeWidget: GestureDetector(
             onTap: () {
               ref.read(tODOStateProviderProvider.notifier).markAsCompleted(
                     data.id ?? 0,
@@ -63,7 +63,9 @@ class TomorrowTaskList extends ConsumerWidget {
                 color: AppColors.primaryDarkGrey,
                 borderRadius: BorderRadius.circular(AppConsts.kRadius),
                 border: Border.all(
-                    color: AppColors.lightOrange, width: AppSizes.s1),
+                  color: AppColors.lightOrange,
+                  width: AppSizes.s1,
+                ),
               ),
               child: Padding(
                 padding: EdgeInsets.symmetric(

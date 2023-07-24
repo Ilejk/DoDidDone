@@ -9,7 +9,7 @@ class TODOtile extends StatelessWidget {
     this.endTime,
     this.editWidget,
     this.deleteFunction,
-    this.switchWidget,
+    this.completeWidget,
     this.color,
   });
   final String? title;
@@ -20,7 +20,7 @@ class TODOtile extends StatelessWidget {
   final Widget? editWidget;
 
   final void Function()? deleteFunction;
-  final Widget? switchWidget;
+  final Widget? completeWidget;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -113,7 +113,7 @@ class TODOtile extends StatelessWidget {
                 Column(
                   children: [
                     Container(
-                      child: switchWidget,
+                      child: completeWidget,
                     ),
                     HeightSpacer(he: AppSizes.s15.h),
                     Row(

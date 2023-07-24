@@ -37,7 +37,7 @@ class CompletedTasks extends ConsumerWidget {
                 .deleteItem(data.id ?? 0);
           },
           editWidget: const SizedBox.shrink(),
-          switchWidget: const SizedBox.shrink(),
+          completeWidget: const SizedBox.shrink(),
         );
       },
     );

@@ -34,4 +34,12 @@ class AuthController {
       phoneNumber: phoneNumber,
     );
   }
+
+  void logout({
+    required BuildContext context,
+  }) {
+    authRepository.logout(
+      context: context,
+    );
+  }
 }

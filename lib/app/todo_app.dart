@@ -12,30 +12,34 @@ class TodoApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     ref.read(userProvider.notifier).refresh();
     List<UserModel> users = ref.watch(userProvider);
+    print(users.length);
+    String initialRoute =
+        users.isEmpty ? Routes.onBoardingRoute : Routes.homeRoute;
     return ScreenUtilInit(
       useInheritedMediaQuery: true,
       designSize: const Size(375, 825),
       minTextAdapt: true,
       builder: (context, child) {
-        return DynamicColorBuilder(builder: (lighColorScheme, darkColorScheme) {
-          return MaterialApp(
-            theme: ThemeData(
-              scaffoldBackgroundColor: AppColors.lightPurple,
-              colorScheme: lighColorScheme ?? defaultLightColorScheme,
-              useMaterial3: true,
-            ),
-            darkTheme: ThemeData(
-              colorScheme: darkColorScheme ?? defaultDarkColorScheme,
-              scaffoldBackgroundColor: AppColors.primaryDarkGrey,
-              useMaterial3: true,
-            ),
-            debugShowCheckedModeBanner: false,
-            themeMode: ThemeMode.dark,
-            onGenerateRoute: RouteGenerator.getRoute,
-            initialRoute:
-                users.isEmpty ? Routes.onBoardingRoute : Routes.homeRoute,
-          );
-        });
+        return DynamicColorBuilder(
+          builder: (lighColorScheme, darkColorScheme) {
+            return MaterialApp(
+              theme: ThemeData(
+                scaffoldBackgroundColor: AppColors.lightPurple,
+                colorScheme: lighColorScheme ?? defaultLightColorScheme,
+                useMaterial3: true,
+              ),
+              darkTheme: ThemeData(
+                colorScheme: darkColorScheme ?? defaultDarkColorScheme,
+                scaffoldBackgroundColor: AppColors.primaryDarkGrey,
+                useMaterial3: true,
+              ),
+              debugShowCheckedModeBanner: false,
+              themeMode: ThemeMode.dark,
+              onGenerateRoute: RouteGenerator.getRoute,
+              initialRoute: initialRoute,
+            );
+          },
+        );
       },
     );
   }

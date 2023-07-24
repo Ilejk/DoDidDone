@@ -45,7 +45,7 @@ class TodayTasks extends ConsumerWidget {
               color: AppColors.lightPurple,
             ),
           ),
-          switchWidget: GestureDetector(
+          completeWidget: GestureDetector(
             onTap: () {
               ref.read(tODOStateProviderProvider.notifier).markAsCompleted(
                     data.id ?? 0,

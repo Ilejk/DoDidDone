@@ -24,6 +24,15 @@ class _HomePageState extends ConsumerState<HomePage>
     notificationsHelper.requestIOSPermissions();
   }
 
+  void logout({
+    required BuildContext context,
+    required WidgetRef ref,
+  }) {
+    ref.read(authControllerProvider).logout(
+          context: context,
+        );
+  }
+
   @override
   void dispose() {
     searchController.dispose();
@@ -37,103 +46,55 @@ class _HomePageState extends ConsumerState<HomePage>
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0.0,
-        automaticallyImplyLeading: false,
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(AppSizes.s85),
-          child: Column(
-            children: [
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: AppPadding.p20.w),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    ReusableTextWidget(
-                      text: AppStrings.homePageAppBarTitle,
-                      textStyle: appTextStyle(
-                          fontSize: AppFontSizes.fs18,
-                          color: AppColors.white,
-                          fontWeight: FontWeight.w600),
-                    ),
-                    Container(
-                      width: AppSizes.s25.w,
-                      height: AppSizes.s25.w,
-                      decoration: BoxDecoration(
-                        color: AppColors.lightOrange,
-                        borderRadius: BorderRadius.circular(AppConsts.kRadius),
-                      ),
-                      child: GestureDetector(
-                        onTap: () => GBM.pushNamed(
-                            context: context, routeName: Routes.addTaskRoute),
-                        child: Icon(
-                          Icons.add,
-                          color: AppColors.primaryDarkGrey,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              HeightSpacer(he: AppSizes.s15.h),
-              CustomTextField(
-                bgColor: AppColors.secondaryDarkGrey,
-                hintText: AppStrings.loginPageSearch,
-                suffixIconColor: AppColors.lightOrange,
-                prefixIconColor: AppColors.lightOrange,
-                hintStyle: appTextStyle(
-                    fontSize: AppFontSizes.fs18,
-                    color: AppColors.white54,
-                    fontWeight: FontWeight.normal),
-                controller: searchController,
-                textFieldStyle: appTextStyle(
-                    fontSize: AppFontSizes.fs18,
-                    color: AppColors.white,
-                    fontWeight: FontWeight.w600),
-                suffixIcon: Icon(
-                  FontAwesome.sliders,
-                  color: AppColors.lightOrange,
-                ),
-                prefixIcon: Padding(
-                  padding: const EdgeInsets.all(AppPadding.p4),
-                  child: GestureDetector(
-                    onTap: () {
-                      //TODO
-                    },
-                    child: Icon(
-                      AntDesign.search1,
-                      color: AppColors.lightOrange,
-                    ),
-                  ),
-                ),
-              )
-            ],
+        leading: RotatedBox(
+          quarterTurns: 2,
+          child: GestureDetector(
+            onTap: () => logout(context: context, ref: ref),
+            child: Icon(
+              IconlyLight.logout,
+              size: AppSizes.s25.w,
+              color: AppColors.lightOrange,
+            ),
           ),
         ),
+        title: ReusableTextWidget(
+          text: AppStrings.homePageAppBarTitle,
+          textStyle: appTextStyle(
+            fontSize: AppFontSizes.fs18,
+            color: AppColors.white,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        automaticallyImplyLeading: false,
+        actions: [
+          Padding(
+            padding: EdgeInsets.only(right: AppPadding.p20.w),
+            child: Container(
+              width: AppSizes.s25.w,
+              height: AppSizes.s25.w,
+              decoration: BoxDecoration(
+                color: AppColors.lightOrange,
+                borderRadius: BorderRadius.circular(AppConsts.kRadius),
+              ),
+              child: GestureDetector(
+                onTap: () => GBM.pushNamed(
+                  context: context,
+                  routeName: Routes.addTaskRoute,
+                ),
+                child: Icon(
+                  Icons.add,
+                  color: AppColors.primaryDarkGrey,
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: AppPadding.p20.w),
           child: ListView(
             children: [
-              HeightSpacer(he: AppSizes.s25.h),
-              Row(
-                children: [
-                  Icon(
-                    FontAwesome.tasks,
-                    color: AppColors.lightOrange,
-                    size: AppSizes.s20,
-                  ),
-                  WidthSpacer(wi: AppSizes.s15.w),
-                  ReusableTextWidget(
-                    text: AppStrings.homePageTitle,
-                    textStyle: appTextStyle(
-                      fontSize: AppFontSizes.fs18,
-                      color: AppColors.white,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ],
-              ),
               HeightSpacer(he: AppSizes.s25.h),
               Container(
                 decoration: BoxDecoration(
@@ -210,7 +171,7 @@ class _HomePageState extends ConsumerState<HomePage>
               ),
               HeightSpacer(he: AppSizes.s20.h),
               SizedBox(
-                height: AppValues.deviceHeight * 0.52,
+                height: AppValues.deviceHeight * 0.7,
                 width: AppValues.deviceWidth,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(AppConsts.kRadius),

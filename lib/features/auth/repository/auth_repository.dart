@@ -32,6 +32,15 @@ class AuthRepository {
     }
   }
 
+  Future<void> logout({
+    required BuildContext context,
+  }) async {
+    GBM.pushAndReplaceNamed(
+        context: context, routeName: Routes.onBoardingRoute);
+
+    await auth.signOut();
+  }
+
   Future<void> sendOTP({
     required BuildContext context,
     required String phoneNumber,
